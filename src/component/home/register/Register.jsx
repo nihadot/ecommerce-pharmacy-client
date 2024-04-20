@@ -1,84 +1,55 @@
-// import { useState } from "react";
-// import InputField from "../../components/Forms/InputField/InputField";
-// import { NavLink } from "react-router-dom";
-// import { errorToast, successToast } from "../../components/Toast";
-// import { userRegister } from "../../api/user";
+import React, { useState } from "react";
 
-// function Register() {
-//   const [formFiled, setFormField] = useState({});
+import { NavLink } from "react-router-dom";
+import { errorToast, successToast } from "../../toast";
+import axios from "axios";
 
-//   const formdatas = [
-//     {
-//       type: "text",
-//       placeholder: "F-Name",
-//       className: "",
-//       name: "lname",
-//     },
-//     {
-//       type: "email",
-//       placeholder: "E-Mail",
-//       className: "",
-//       name: "email",
-//     },
-//     {
-//       type: "password",
-//       placeholder: "Password",
-//       className: "",
-//       name: "password",
-//     },
-//     {
-//       type: "text",
-//       placeholder: "fname.",
-//       className: "",
-//       name: "L-name",
-//     },
-//   ];
+function Register() {
+  const [email, setEmail] = useState('');
+  const [Fname,setFName] = useState('')
+  const [Lname,setLName] = useState('')
+  const [password,setPassword] = useState('')
+  
 
-//   const onChangeValues = (e) => {
-//     console.log(e.target.value);
-//     setFormField({ ...formFiled, [e.target.name]: e.target.value });
-//   };
+  const handleSubmit =async (e) => {
+    e.preventDefault();
 
-//   const handleSubmit =async (e) => {
-//     e.preventDefault();
-//     try {
-//      const response = await userRegister(formFiled)
+   
+    try {
+      const response = await axios.post('http://localhost:3000/api/users/register',{email:email,password:password,Fname:Fname,Lname:Lname})
+      successToast('created')
 
-//       successToast(response.data.message)
-//     } catch (error) {
-//       errorToast(error.response.data.message,'error')
-//     }
-//   };
+} catch (error) {
+errorToast(error.response.data.message)
+}
+};
 
   
 
-//   return (
-//     <div className="flex justify-center items-center flex-col h-screen">
-//       <form
-//         onSubmit={handleSubmit}
-//         action=""
-//         className="w-[50%] rounded-md bg-black h-[500px] flex justify-center flex-col gap-5 items-center "
-//       >
-//         <h2 className="text-white text-xl">Register</h2>
-//         {formdatas.map(({ className, placeholder, type, name }, index) => (
-//           <InputField
-//             onChange={onChangeValues}
-//             key={index}
-//             type={type}
-//             placeholder={placeholder}
-//             name={name}
-//             className={`${className} max-w-[300px] w-[80%] h-[40px] bg-white flex justify-start ps-5 rounded-md items-center`}
-//           />
-//         ))}
-//         <input
-//           type="submit"
-//           className="text-white border-solid border-2 border-indigo-600 w-[40%]"
-//         />
-//       <NavLink to={"/user-login"}>
-//         <p className="text-white text-xs underline "> login </p>
-//       </NavLink>
-//       </form>
-//     </div>
-//   );
-// }
-// export default Register;
+  
+
+  return (
+    <div className="flex justify-center items-center flex-col h-screen">
+      <form
+        onSubmit={handleSubmit}
+        action=""
+        className="w-[50%] rounded-md bg-white h-[400px] border-2 border-green-300 text-green-400 flex justify-center flex-col gap-5 items-center "
+      >
+        <h2 className="text-green-400 text-2xl font-bold">Register</h2>
+       
+        <input type="text" placeholder="FName" onChange={(e)=>setFName(e.target.value)} />
+        <input type="text" placeholder="LName" onChange={(e)=>setLName(e.target.value)} />
+        <input type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+        <input type="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+        <button
+          type="submit"
+          className="border-solid border-2 border-green-600 rounded h-[40px] w-[100px] text-green-500">SIGN UP</button>
+         <p className='font-semibold text-xs text-green-600 sm:text-base'>Have an account?</p>
+      <NavLink to={"/login"}>
+        <p className="text-green-300 font-bold text-xs underline "> login </p>
+      </NavLink>
+      </form>
+    </div>
+  );
+}
+export default Register;

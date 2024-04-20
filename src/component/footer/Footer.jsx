@@ -9,26 +9,26 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className=' ms-9 mb-0 mt-32 me-2'>
+    <footer className=' ms-20 mb-0 mt-32 me-2'>
       <div className='bg-green-700 w-[85%] h-[400px] ms-12 text-white'>
-    <div className='bg-green-700 w-[85%] h-[350px] ms-12 flex gap-4 mb-0'>
+    <div className='bg-green-700 w-[85%] h-[350px] ms-12 flex gap-4  text-base mb-0'>
   <div className='pt-4 mt-3 ms-12 flex-col '>
     
-<h1 className='font-medium text-bold '>Contact</h1>
+<h1 className='font-medium  sm:text-base text-bold '>Contact</h1>
 <div className='mt-4 pt-2'>
  
 <p className='flex mt-3'>
   <IoLocation className='mt-1' />
-  <span>
+  <span className=' sm:text-base'>
 
   123Road,Dhaka,Bangladesh
   </span>
 </p >
 
-<p className='flex  mt-2'>
+<p className='flex  mt-2  sm:text-base'>
 <FaSquarePhone className='mt-1' />+987776576576555</p>
 <p className='flex mt-2'>
-<MdMarkEmailUnread className='mt-1' />
+<MdMarkEmailUnread className='mt-1  sm:text-base' />
 123Road,Dhaka,Bangladesh
 </p>
 </div>

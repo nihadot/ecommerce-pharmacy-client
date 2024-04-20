@@ -9,25 +9,25 @@ export const nproduct = [
 
     {   id:"1",
         image: nproduct1,
-        title: "foly cathetar",
+        name: "foly cathetar",
         price: "200"
     },
     {
         id:"2",
         image:nproduct2,
-        title: "Thermometer",
+        name: "Thermometer",
         price: "500"
     },
     {
         id:"3",
         image: nproduct3,
-        title: "Non-rebreather mask",
+        name: "Non-rebreather mask",
         price: "90"
     },
     {
         id:"4",
         image: nproduct4,
-        title: "Wound Dressing",
+        name: "Wound Dressing",
         price: "60"
     },
 ]

@@ -12,7 +12,7 @@ const Blog = () => {
     <div className='bg-white my-10 '>
       <h1 className='text-center  font-extrabold text-lg mt-3 pt-2'> Our Latest News & Blogs</h1>
 
-    <div className='main flex mt-3'>
+    <div className='main flex sm:flex-wrap mt-3'>
 
 
 

@@ -7,25 +7,25 @@ export const pproduct = [
 
     {   id:"1",
         image: pproduct1,
-        title: "Oxygen Mask",
+        name: "Oxygen Mask",
         price: "200"
     },
     {
         id:"2",
         image: pproduct2,
-        title: "Surgical Gloves",
+        name: "Surgical Gloves",
         price: "18"
     },
     {
         id:"3",
         image: pproduct3,
-        title: "Medical Mask",
+        name: "Medical Mask",
         price: "90"
     },
     {
         id:"4",
         image: pproduct4,
-        title: "Hand Sanitizer",
+        name: "Hand Sanitizer",
         price: "80"
     },
 ]

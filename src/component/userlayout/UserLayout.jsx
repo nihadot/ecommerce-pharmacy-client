@@ -2,6 +2,8 @@ import React from 'react'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
 import { Outlet } from 'react-router-dom'
+import Detail from '../home/details/Detail'
+import { product } from '../home/productlist/Product'
 
 const UserLayout = () => {
   return (
@@ -11,6 +13,7 @@ const UserLayout = () => {
   <div className="header">
   <Header/>
   </div>
+
 
 <div className="outlety">
 

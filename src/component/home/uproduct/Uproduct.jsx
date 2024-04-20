@@ -8,26 +8,26 @@ import uproduct4 from "../../images/uproduct4.png"
 export const uproduct = [
 
     {   id:"1",
-        image:uproduct1,
-        title: "Wound Dressing",
+        image: uproduct3,
+        name: "Wound Dressing",
         price: "20000"
     },
     {
         id:"2",
         image: uproduct2,
-        title: "Iv Catheter",
+        name: "Iv Catheter",
         price: "500"
     },
     {
         id:"3",
-        image: uproduct3,
-        title: "Blood Pressure Cuff",
+        image: uproduct4,
+        name: "Blood Pressure Cuff",
         price: "90"
     },
     {
         id:"4",
-        image: uproduct4,
-        title: "Chest tube",
+        image:uproduct1,
+        name: "Chest tube",
         price: "60"
     },
     

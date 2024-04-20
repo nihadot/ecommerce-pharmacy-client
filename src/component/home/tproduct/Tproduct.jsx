@@ -11,49 +11,49 @@ export const tproduct = [
 
     {   id:"1",
         image:tproduct1,
-        title: "Hospital Bed",
+        name: "Hospital Bed",
         price: "20000"
     },
     {
         id:"2",
         image: tproduct2,
-        title: "Walker Mobility",
+        name: "Walker Mobility",
         price: "500"
     },
     {
         id:"3",
         image: tproduct3,
-        title: "Wheelchair",
+        name: "Wheelchair",
         price: "90"
     },
     {
         id:"4",
         image: tproduct4,
-        title: "Crutches",
+        name: "Crutches",
         price: "60"
     },
     
     {   id:"5",
         image: tproduct5,
-        title: "Defibrillation",
+        name: "Defibrillation",
         price: "20000"
     },
     {
         id:"6",
         image: tproduct6,
-        title: "Ventilator",
+        name: "Ventilator",
         price: "120000"
     },
     {
         id:"7",
         image: tproduct7,
-        title: "Otoscope",
+        name: "Otoscope",
         price: "8000"
     },
     {
         id:"8",
         image: tproduct8,
-        title: "Aspirator",
+        name: "Aspirator",
         price: "35000"
     },
 ]
