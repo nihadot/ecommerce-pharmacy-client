@@ -26,6 +26,18 @@ function Maincard3() {
         }
     };
 
+    const handleAddToCart = async (idOf,status) => {
+        try {
+          console.log('api');
+          const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id,offer:status });
+          console.log(response);
+          successToast("Succesfully Added into Cart")
+         
+    
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     // const addToCart = async (id) => {
     //     try {
@@ -81,14 +93,14 @@ function Maincard3() {
                         <div className='flex justify-around'>
 
 
-<button className=' flex justify-around p-2 rounded border-green-300 bg-green-800 text-white -mt-2 -ms-5  pt-2 h-[54px] w-[270px]'>
+                        { parseInt(item?.quantity) === 1 ? 'out of stock' :<button  onClick={() => handleAddToCart(item._id,false)} className=' flex justify-around p-2 rounded border-green-300 bg-green-800 text-white -mt-2 -ms-5  pt-2 h-[54px] w-[270px]'>
    Add to Cart
 
     <div className='mt-2'>
     <BsFillHandbagFill />
 
        </div>
-      </button>
+      </button>}
       </div>
 
 

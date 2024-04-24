@@ -13,24 +13,14 @@ function Wishlist () {
   const [data,setData] = useState([])
 
 
-// const fetchdata = async () => {
-//   try {
-//       const response = await axios.get('http://localhost:3000/api/wishlist/viewall')
-//       setWishlist(response.data.result)
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// useEffect(() => {
-// fetchdata()
-// }, [refresh])
 
 const fetchdata = async () => {
   try {
       const response = await axios.get(`http://localhost:3000/api/wishlist/listWishlist/${JSON.parse(localStorage.getItem("userDetails"))._id }`)
       setWishlist(response.data.data)
   } catch (error) {
+    setWishlist([])
+
     console.log(error);
   }
 }
@@ -42,19 +32,19 @@ fetchdata()
 
 
 
-useEffect(()=>{
-  fetchData()
-},[])
+// useEffect(()=>{
+//   fetchData()
+// },[])
 
 
-const fetchData = async ()=>{
-    try {
-        const response = await axios.get("http://localhost:3000/api/product")
-        setData(response.data.product);
-    } catch (error) {
+// const fetchData = async ()=>{
+//     try {
+//         const response = await axios.get("http://localhost:3000/api/product")
+//         setData(response.data.product);
+//     } catch (error) {
         
-    }
-};
+//     }
+// };
 
 
 
@@ -67,10 +57,12 @@ const fetchData = async ()=>{
   const handleRemoveQuantity = async (id) => {
     try {
       const response = await axios.get(`http://localhost:3000/api/wishlist/removewishlist/${JSON.parse(localStorage.getItem("userDetails"))._id}/${id}`)
-      setRefresh(!refresh)
       successToast("Removed succesfully")
+      setRefresh(!refresh)
     } catch (error) {
       console.log(error);
+      setRefresh(!refresh)
+
     }
   }
 
@@ -84,7 +76,7 @@ const fetchData = async ()=>{
         {/* {
           cart?.length > 0 ? */}
             <div className="flex flex-wrap justify-center">
-              <div className="bg-slate-100 m-4 border shadow p-5 rounded-lg lg:w-[700px]  md:w-[550px]  ">
+              <div className="bg-green-100 m-4 border shadow p-5 rounded-lg lg:w-[700px]  md:w-[550px]  ">
                 <div className="flex justify-between items-center">
                   <p className='font-bold'>Wishlist</p>
                   <p className='font-bold'>{wishlist.length} items</p>
@@ -96,9 +88,9 @@ const fetchData = async ()=>{
                       return (
                         <>
                           <Card className='w-[330px] m-2 p-2 hover:translate-x-1'>
-                          <Link to={`/productdetails/${item._id}`} 
-                          state={item}
-                          key={index} >
+                          {/* <Link to={`/productdetails/${item._id}`}  */}
+                          {/* state={item} */}
+                          {/* key={index} > */}
                             <div className="flex ">
                               <img src={item.productInfo.mainimage} alt="" className='w-[100px] m-1' />
                               <div className="mt-3 p-2">
@@ -113,7 +105,7 @@ const fetchData = async ()=>{
                                 <button className=' text-teal-800 text-lg text-center hover:translate-x-1' onClick={() => handleRemoveQuantity(item.productInfo._id)}><i class="fa-solid fa-trash"></i></button>
                               </div>
                             </div>
-                            </Link>
+                            {/* </Link> */}
                            
                           </Card>
                         </>

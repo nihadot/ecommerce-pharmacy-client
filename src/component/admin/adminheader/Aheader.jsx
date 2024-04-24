@@ -36,12 +36,12 @@ const Aheader = () => {
     
 
 
-      <div className=' text-green-700 h-[10px] w-[100px] flex gap-1 justify-end mt-8 mx-[90%]'>
+      <div className=' text-green-700 h-[10px] w-[100px] flex gap-1 justify-end  mt-8 mx-[90%]'>
 
-     <p className='h-[40px]'> <FaBell /></p>
+     <p className='h-[40px] me-2'> <FaBell /></p>
      
      
-     <p className='text-green-600  text-xs sm:text-base'>{user.Fname} <span>{user.Lname}</span> </p>
+     <p className='text-green-600  text-xs sm:text-base'><span className='mb-[5px]'>{user.Lname}</span> </p>
           <RxAvatar className='mx-5 ms-5  -me-10'/>
       </div>
      

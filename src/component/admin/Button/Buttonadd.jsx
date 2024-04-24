@@ -11,6 +11,7 @@ function Buttonadd() {
     const [offerRate,setOfferRate] = useState('');
     const [cost,setCost]=useState('')
     const [image,setImage] = useState('');
+    const [quantity, setQuantity] = useState('');
 
 
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Buttonadd() {
       const addCards = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3000/api/buttons",{image:image,title:title,description:description,cost:cost,timeline:timeline,offerRate:offerRate},{headers:{
+            const response = await axios.post("http://localhost:3000/api/buttons",{image:image,title:title,description:description,cost:cost,timeline:timeline,offerRate:offerRate,quantity:quantity},{headers:{
               'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
             }})
             
@@ -48,6 +49,7 @@ function Buttonadd() {
                 <input type="text" placeholder='timeline' name='name' value={timeline} onChange={(e)=>setTimeline(e.target.value)} className='outline outline-1 text-xs sm:text-base  px-2' />
                 <input type="text" placeholder='cost' name='cost' value={cost} onChange={(e)=>setCost(e.target.value)} className='outline outline-1 text-xs sm:text-base  px-2' />
                 <input type="text" placeholder='offer rate' name='name' value={offerRate} onChange={(e)=>setOfferRate(e.target.value)} className='outline outline-1 text-xs sm:text-base  px-2' />
+                <input  type="number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} className='outline outline-1 text-xs sm:text-base  px-2' />
                 <input type="submit" value="Upload"  className='text-green-900 border-green-900 border text-xs sm:text-base hover:bg-green-900 hover:text-white'/>
             </div>
         </form>

@@ -28,13 +28,14 @@ function Offerdetails() {
     }
   };
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (idOf) => {
     try {
       console.log('api');
-      const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: item._id, userId: JSON.parse(localStorage.getItem("userDetails"))?._id });
+      const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id });
       console.log(response);
 
       successToast("Succesfully Added into Cart")
+      navigate('/cart')
 
     } catch (error) {
       console.log(error);

@@ -62,6 +62,7 @@ function Buttonview() {
             <p className='text-xs sm:text-base'>{item.timeline}</p>
             <p className='text-xs sm:text-base'>{item.cost}</p>
             <p className='text-xs sm:text-base'>{item.offerRate}</p>
+            <p className='text-xs sm:text-base'>{item.quantity}</p>
           </div>
 
           <div className=" flex gap-3">

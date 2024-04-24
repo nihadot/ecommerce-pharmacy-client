@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate,useLocation } from 'react-router-dom';
 import axios from "axios";
 import { errorToast,successToast } from '../toast';
+import { Context } from '../../App';
 
 function Addressform() {
+
+  const { state:useParamsState } = useLocation()
+  const { refresh,setRefresh } = useContext(Context)
+
 
 
   // const [address, setAddress] = useState({
@@ -62,6 +67,7 @@ try {
       buildingName: buildingName,
       roadName: roadName,
       areaColony: areaColony,
+      total:useParamsState?.total,
       // selectedType:selectedType,
 
       userId: JSON.parse(localStorage.getItem("userDetails"))?._id,
@@ -69,7 +75,8 @@ try {
   );
   
   successToast(response.data.message);
-  navigate(`/order/${response.data.result._id}`)
+  setRefresh(!refresh)
+  navigate(`/cart`)
 } catch (error) {
   errorToast(error.response.data.message, "error");
 }

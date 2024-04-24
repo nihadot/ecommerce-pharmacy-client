@@ -30,7 +30,7 @@ const Home = () => {
 <>
 
 <div className="">
-  <Linke/>
+  {/* <Linke/> */}
  </div>
 
 

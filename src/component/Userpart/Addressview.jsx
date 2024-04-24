@@ -17,10 +17,17 @@ const Addressview = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/address/getById/${id}`
+        `http://localhost:3000/api/address/getById/${JSON.parse(localStorage.getItem("userDetails"))._id}/${id}`
       );
+
+
+
+
+      // axios.get(`http://localhost:3000/api/wishlist/removewishlist/${JSON.parse(localStorage.getItem("userDetails"))._id}/${id}`)
+
+
+      console.log(response, "qqqqq");
       setAddress(response.data.result);
-      console.log(response.data.result, "qqqqq");
     } catch (error) {
       console.log(error);
       errorToast(error.response.data.message || "Try Again");

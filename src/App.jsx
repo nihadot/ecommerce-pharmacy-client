@@ -1,13 +1,13 @@
-import  { createBrowserRouter, RouterProvider } from "react-router-dom"
-import React, { createContext, useEffect,useState} from 'react'
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import React, { createContext, useEffect, useState } from 'react'
 import axios from "axios";
 import UserLayout from "./component/userlayout/UserLayout"
 import Home from "./component/home/Home"
 import Data from "./component/home/data/Data"
 import Detail from "./component/home/details/Detail"
 import Error from "./component/home/error/Error"
- import Login from "./component/home/login/Login"
- import Register from "./component/home/register/Register"
+import Login from "./component/home/login/Login"
+import Register from "./component/home/register/Register"
 // import Adminlayout from "./component/admin/admin layout/Adminlayout"
 import Asignup from "./component/admin/Admin signup/Asignup"
 import Alogin from "./component/admin/AdminLogin/Alogin"
@@ -85,389 +85,411 @@ function App() {
   const [wishlist, setWishlist] = useState([])
   const [refresh, setRefresh] = useState(true)
 
+
+  
   const router = createBrowserRouter([
     {
       path: "/",
       element: <UserLayout />,
 
-      children:[
-        {      
-          path:"home",
-          element:<Home/>
-        },
-        {      
-          path:"data",
-          element:<Data/>
+      children: [
+        {
+          path: "home",
+          element: <Home />
         },
         {
-        path:"linklayout/:name",
-        element:<Linklayout/>
-       
+          path: "data",
+          element: <Data />
+        },
+        {
+          path: "linklayout/:name",
+          element: <Linklayout />
+
         },
         {
           path: "buttonlayout/:layout",
-          element: <Buttonlayout/>
+          element: <Buttonlayout />
         },
 
-       
-        {
-          path:"productdetails/:name",
-          element:<Productdetails/>
-         
-          },
-          {
-            path:"offerdetails/:name",
-            element:<Offerdetails/>
-           
-            },
-  
 
-          {
-            path:"account",
-            element:<Accountview/>
-           
-            },
-          {
-            path:"essential",
-            element:<Essential/>
-           
-            },
-            {
-              path:"emptycart",
-              element:<Emptycart/>
-             
-              },
-              {
-                path:"cart",
-                element:<Cart/>
-               
-                },
-                {
-                  path:"cartt",
-                  element:<Cartt/>
-                 
-                  },
-                {
-                  path:"viewall",
-                  element:<Viewall/>
-                 
-                  },
-             
-                {
-                  path:"wishlist",
-                  element:<Wishlists/>
-                 
-                  },
-               
-         
-                  {
-                    path:"accountsettings",
-                    element:<AccountSettings/>
-                   
-                    },
-                    
-                  {
-                    path:"offer",
-                    element:<Offer/>
-                   
-                    },
-                       
-                  {
-                    path:"addaddress",
-                    element:<Addressform/>
-                   
-                    },
-                    {
-                      path:"addaddress2",
-                      element:<Addressform2/>
-                     
-                      },
-                    {
-                      path:"addressview",
-                      element:<Addressview/>
-                     
-                      },
-                      
-                      {
-                        path:"addressview2",
-                        element:<Addressview2/>
-                       
-                        },
-                        {
-                          path:"addressviewpage",
-                          element:<Addressviewpage/>
-                         
-                          },
-                          {
-                            path:"ordering",
-                            element:<Ordering/>
-                           
-                            },
-                            {
-                              path:"paymentmode",
-                              element:<Paymentmode/>
-                             
-                              },
-                      {
-                        path:"order",
-                        element:<Orders/>
-                       
-                        },
-                        {
-                        
-                        path:"orderdetails",
-                        element:<Orderdetails/>
-                       
-                        },
-                     
-                   
-                 
-                 
-       
+        {
+          path: "productdetails/:id",
+          element: <Productdetails />
+
+        },
+        {
+          path: "offerdetails/:name",
+          element: <Offerdetails />
+
+        },
+
+
+        {
+          path: "account",
+          element: <Accountview />
+
+        },
+        {
+          path: "essential",
+          element: <Essential />
+
+        },
+        {
+          path: "emptycart",
+          element: <Emptycart />
+
+        },
+        {
+          path: "cart",
+          element: <Cart />
+
+        },
+        {
+          path: "cartt",
+          element: <Cartt />
+
+        },
+        {
+          path: "viewall",
+          element: <Viewall />
+
+        },
+
+        {
+          path: "wishlist",
+          element: <Wishlists />
+
+        },
+
+
+        {
+          path: "accountsettings",
+          element: <AccountSettings />
+
+        },
+
+        {
+          path: "offer",
+          element: <Offer />
+
+        },
+
+        {
+          path: "addaddress",
+          element: <Addressform />
+
+        },
+        {
+          path: "addaddress2",
+          element: <Addressform2 />
+
+        },
+        {
+          path: "addressview/:id",
+          element: <Addressview />
+
+        },
+
+        {
+          path: "addressview2",
+          element: <Addressview2 />
+
+        },
+        {
+          path: "addressviewpage",
+          element: <Addressviewpage />
+
+        },
+        {
+          path: "ordering",
+          element: <Ordering />
+
+        },
+        {
+          path: "paymentmode",
+          element: <Paymentmode />
+
+        },
+        {
+          path: "order",
+          element: <Orders />
+
+        },
+        {
+
+          path: "orderdetails",
+          element: <Orderdetails />
+
+        },
+
+
+
+
+
       ]
     },
-    
+
     {
-      path:'*',
-      element:<Error/>,
-     
+      path: '*',
+      element: <Error />,
+
     },
     {
-      path:'shopping',
-      element:<Shopping/>,
-     
+      path: 'shopping',
+      element: <Shopping />,
+
     },
     {
-      path:"login",
-      element:<Login/>
+      path: "login",
+      element: <Login />
 
     }, {
-      path:"signup",
-      element:<Register/>
+      path: "signup",
+      element: <Register />
 
     },
-   
+
     {
-      path:"admin",
-      element:<Adminlayout/>,
-      children:[
+      path: "admin",
+      element: <Adminlayout />,
+      children: [
 
 
 
         {
-          path:"/admin/profile",
-          element:<Userprofile/>,
-        
+          path: "/admin/profile",
+          element: <Userprofile />,
+
         },
         {
-          path:"/admin/addproduct",
-          element:<Productadd/>,
-        
+          path: "/admin/addproduct",
+          element: <Productadd />,
+
         },
         {
-          path:"/admin/productedit",
-          element:<ProductEdit/>,
-        
+          path: "/admin/productedit",
+          element: <ProductEdit />,
+
         },
         {
-          path:"/admin/products",
-          element:<Products/>,
-        
+          path: "/admin/products",
+          element: <Products />,
+
         },
         {
-          path:"/admin/vieworder",
-          element:<ViewOrderPage/>,
-        
+          path: "/admin/vieworder",
+          element: <ViewOrderPage />,
+
         },
         {
-          path:"/admin/editform/:id",
-          element:<Editform/>,
-        
+          path: "/admin/editform/:id",
+          element: <Editform />,
+
         },
         {
           path: "/admin/banner",
-          element: <BannerLayout/>,
+          element: <BannerLayout />,
         },
-            {
-              path: "/admin/bannerview",
-              element: <Bannerview/>
-            },
-            {
-              path: "/admin/addbanner1",
-              element: <Addadver1/>
-            },
-            {
-              path: "/admin/addbanner2",
-              element: <Addadver2/>
-            },
-            {
-              path: "/admin/addbanner3",
-              element: <Addadver3/>
-            },
-            {
-            path: "/admin/editadver1/:id",
-            element: <Editadver1/>
-          },
-          {
-            path: "/admin/editadver2/:id",
-            element: <Editadver2/>
-          },
-          {
-            path: "/admin/editadver3/:id",
-            element: <Editadver3/>
-          },
+        {
+          path: "/admin/bannerview",
+          element: <Bannerview />
+        },
+        {
+          path: "/admin/addbanner1",
+          element: <Addadver1 />
+        },
+        {
+          path: "/admin/addbanner2",
+          element: <Addadver2 />
+        },
+        {
+          path: "/admin/addbanner3",
+          element: <Addadver3 />
+        },
+        {
+          path: "/admin/editadver1/:id",
+          element: <Editadver1 />
+        },
+        {
+          path: "/admin/editadver2/:id",
+          element: <Editadver2 />
+        },
+        {
+          path: "/admin/editadver3/:id",
+          element: <Editadver3 />
+        },
 
 
-            {
-              path: "/admin/blogs",
-              element: <Blogs/>
-            },
-            {
-              path: "/admin/editblog/:id",
-              element: <Editblog/>
-            },
-            {
-              path: "/admin/blogview",
-              element: <Viewblog/>
-            },
-            
         {
-          path:"/admin/addblog",
-          element:<Blogg/>,
-        
+          path: "/admin/blogs",
+          element: <Blogs />
         },
         {
-          path:"/admin/addcategory",
-          element:<Addcategory/>,
-        
+          path: "/admin/editblog/:id",
+          element: <Editblog />
         },
         {
-          path:"/admin/viewcategory",
-          element:<Viewcategory/>,
-        
+          path: "/admin/blogview",
+          element: <Viewblog />
         },
-        {
-          path:"/admin/editcategory/:id",
-          element:<Editcategory/>,
-        
-        },
-        {
-          path:"/admin/category",
-          element:<Category/>,
-        
-        },
-        {
-          path:"/admin/buttons",
-          element:<Buttons/>,
-        
-        },
-        {
-          path:"/admin/buttonadd",
-          element:<Buttonadd/>,
-        
-        },
-        {
-          path:"/admin/buttonview",
-          element:<Buttonview/>,
-        
-        },
-        {
-          path:"/admin/buttonedit/:id",
-          element:<Buttonedit/>,
-        
-        },
-        {
-          path:"/admin/editbannerone/:id",
-          element:<Editbannerone/>,
-        
-        },
-        {
-          path:"/admin/viewbannerone",
-          element:<Viewbannerone/>,
-        
-        },
-        {
-          path:"/admin/addbannerone",
-          element:<Addbannerone/>,
-        
-        },
-        {
-          path:"/admin/banners",
-          element:<Banners/>,
-        
-        },
-        {
-          path:"/admin/editbannertwo/:id",
-          element:<Editbannertwo/>,
-        
-        },
-        {
-          path:"/admin/viewbannertwo",
-          element:<Viewbannertwo/>,
-        
-        },
-        {
-          path:"/admin/addbannertwo",
-          element:<Addbannertwo/>,
-        
-        },
-        {
-          path:"/admin/orderviewpage",
-          element:<OrderViewPage/>,
-        
-        },
-          
-          
-          
-        
 
-      
+        {
+          path: "/admin/addblog",
+          element: <Blogg />,
+
+        },
+        {
+          path: "/admin/addcategory",
+          element: <Addcategory />,
+
+        },
+        {
+          path: "/admin/viewcategory",
+          element: <Viewcategory />,
+
+        },
+        {
+          path: "/admin/editcategory/:id",
+          element: <Editcategory />,
+
+        },
+        {
+          path: "/admin/category",
+          element: <Category />,
+
+        },
+        {
+          path: "/admin/buttons",
+          element: <Buttons />,
+
+        },
+        {
+          path: "/admin/buttonadd",
+          element: <Buttonadd />,
+
+        },
+        {
+          path: "/admin/buttonview",
+          element: <Buttonview />,
+
+        },
+        {
+          path: "/admin/buttonedit/:id",
+          element: <Buttonedit />,
+
+        },
+        {
+          path: "/admin/editbannerone/:id",
+          element: <Editbannerone />,
+
+        },
+        {
+          path: "/admin/viewbannerone",
+          element: <Viewbannerone />,
+
+        },
+        {
+          path: "/admin/addbannerone",
+          element: <Addbannerone />,
+
+        },
+        {
+          path: "/admin/banners",
+          element: <Banners />,
+
+        },
+        {
+          path: "/admin/editbannertwo/:id",
+          element: <Editbannertwo />,
+
+        },
+        {
+          path: "/admin/viewbannertwo",
+          element: <Viewbannertwo />,
+
+        },
+        {
+          path: "/admin/addbannertwo",
+          element: <Addbannertwo />,
+
+        },
+        {
+          path: "/admin/orderviewpage",
+          element: <OrderViewPage />,
+
+        },
+
+
+
+
+
+
 
 
       ]
 
-  },
-  {
-    path:"asignup",
-    element:<Asignup/>,
+    },
+    {
+      path: "asignup",
+      element: <Asignup />,
 
-},
-{
-  path:"alogin",
-  element:<Alogin/>,
+    },
+    {
+      path: "alogin",
+      element: <Alogin />,
 
-},
-
-  
-  
- ]);
+    },
 
 
 
+  ]);
 
- 
-useEffect(() => {
-  fetchdata();
-}, []);
 
-const fetchdata = async () => {
-  try {
-    const response = await axios.get(`http://localhost:3000/api/cart/listCart/${
-      JSON.parse(localStorage.getItem("userDetails"))._id }`);
-    setCart(response.data.result);
-    setRefresh(!refresh);
-  } catch (error) {
-    setCart([]);
 
-    console.log(error);
-  }
-};
+
+
+  useEffect(() => {
+    fetchdata();
+  }, [refresh]);
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/cart/listCart/${JSON.parse(localStorage.getItem("userDetails"))._id}`);
+      setCart(response.data.result);
+      setRefresh(!refresh);
+    } catch (error) {
+      setCart([]);
+
+      console.log(error);
+    }
+  };
+
+
+
+
+
+
+
+
+  // const handleAddToCart = async (idOf, status) => {
+  //   try {
+  //     console.log('api');
+  //     const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id, offer: status });
+  //     console.log(response);
+  //     setRefresh(!refresh)
+  //     successToast("Succesfully Added into Cart")
+
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
-     <Context.Provider value={{ count, setCount, cart, setCart, wishlist, setWishlist, refresh, setRefresh }}>
-    < RouterProvider router={router} />
-    </Context.Provider>
+      <Context.Provider value={{ count, setCount, cart, setCart, wishlist, setWishlist, refresh, setRefresh, }}>
+        < RouterProvider router={router} />
+      </Context.Provider>
     </>
   )
 }
