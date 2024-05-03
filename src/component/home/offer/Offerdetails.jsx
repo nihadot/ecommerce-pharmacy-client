@@ -1,18 +1,20 @@
 import React from 'react';
 import{Link, useLocation, useParams } from 'react-router-dom';
-import { useState,useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState,useEffect,useContext } from 'react';
+import { NavLink,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {  successToast } from "../../toast";
 import { Card } from '@mui/material';
+import { Context } from '../../../App';
 function Offerdetails() {
   const [data, setData] = useState([])
-
+  const { refresh,setRefresh } = useContext(Context)
 
   const { name } = useParams();
   const { state } = useLocation();
 
   const item = state;
+  const navigate = useNavigate()
 
   const handleAddToWishlist = async () => {
     try {
@@ -20,7 +22,7 @@ function Offerdetails() {
       const response = await axios.post('http://localhost:3000/api/wishlist/addToWishlist', { productId: item._id, userId: JSON.parse(localStorage.getItem("userDetails"))?._id });
       console.log(response);
 
-
+      setRefresh(!refresh)
       successToast("Succesfully Added into Wishlist")
 
     } catch (error) {
@@ -35,6 +37,7 @@ function Offerdetails() {
       console.log(response);
 
       successToast("Succesfully Added into Cart")
+      setRefresh(!refresh)
       navigate('/cart')
 
     } catch (error) {

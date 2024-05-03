@@ -7,6 +7,8 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [data, setData] = useState([])
+
+  
  
 
 
@@ -19,22 +21,16 @@ const Cart = () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/cart/listCart/${JSON.parse(localStorage.getItem("userDetails"))._id}`);
       setCart(response.data.result);
-
-      console.log(response.data.result,'dd')
-
-
       const response__ = await axios.get(`http://localhost:3000/api/offercard/${JSON.parse(localStorage.getItem("userDetails"))._id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("adminToken")} `
         }
       })
-
       setData(response__.data.result)
 
     } catch (error) {
       setCart([]);
 
-      console.log(error);
     }
   };
 
@@ -81,23 +77,6 @@ const Cart = () => {
 
 
 
-
-
-  
-  const handleIncrementcartQuantity = async (id) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/api/cart/increment-offercart/${JSON.parse(localStorage.getItem("userDetails"))._id
-        }/${id}`
-      );
-
-     
-      setRefresh(!refresh);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleDecrementcartQuantity = async (id) => {
     try {
       const response = await axios.get(
@@ -121,6 +100,7 @@ const Cart = () => {
       setData(response.data.result);
       setRefresh(!refresh);
     } catch (error) {
+      
       console.log(error);
     }
   };
@@ -137,13 +117,6 @@ const Cart = () => {
   let subtotal = 0;
   let total = 0;
 
-
-
-  // subtotal > 499 ? total : total + 40
-
-  // let offerprice=0
-  // let totalamount=0;
-  // let subTotal=0
   return (
     <>
       <p className="ps-[14px] pt-[5px] font-sans">
@@ -151,8 +124,8 @@ const Cart = () => {
           <span className="text-green-500">Home</span>
         </NavLink>{" "}
       </p>
-      {cart.length}
-      {cart?.length > 0 ? (
+   
+      {cart?.length || data.length > 0 ? (
         <div>
           <p className="text-[29px] font-medium font-sans ps-[43%] pt-[30px]">
             Shopping Cart

@@ -1,12 +1,19 @@
 import React from 'react';
-import{Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import{Link, useLocation, useNavigate, useParams, } from 'react-router-dom';
+import { useContext } from 'react';
 import { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import {  successToast } from "../../toast";
 import { Card } from '@mui/material';
+import { Context } from '../../../App';
+
+
+
 function Productdetails() {
   const [data, setData] = useState([])
+  const [products, setproducts] = useState([])
+  const { refresh,setRefresh } = useContext(Context)
 
   const navigate = useNavigate()
 
@@ -20,9 +27,8 @@ function Productdetails() {
     try {
       console.log('api');
       const response = await axios.post('http://localhost:3000/api/wishlist/addToWishlist', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id });
-      console.log(response);
 
-
+      setRefresh(!refresh)
       successToast("Succesfully Added into Wishlist")
 
     } catch (error) {
@@ -36,6 +42,7 @@ function Productdetails() {
       const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id });
       console.log(response);
       successToast("Succesfully Added into Cart")
+      setRefresh(!refresh)
       navigate('/cart')
      
 
@@ -43,6 +50,16 @@ function Productdetails() {
       console.log(error);
     }
   };
+
+  const fetchproducts= async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/product/${id}`)
+      setproducts(response.data.product);
+      console.log(response,'response');
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  }
 
   const fetchdata = async () => {
     try {
@@ -56,6 +73,7 @@ function Productdetails() {
 
   useEffect(() => {
     fetchdata()
+    fetchproducts()
   }, [])
 
   return (
@@ -79,7 +97,11 @@ function Productdetails() {
           
             <p
           >
-            <button type='button' onClick={() => handleAddToCart(data._id)} className='bg-green-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded hover:bg-green-200 text-white text-xs sm:text-base'><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+          { parseInt(item?.quantity) === 1 ? 'out of stock'  :   <button type='button' onClick={() => handleAddToCart(data._id)} className='bg-green-700 py-1 px-2 sm:py-2 sm:px-8 m-2 rounded hover:bg-green-200 text-white text-xs sm:text-base'><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+          
+          }
+
+          {/* {parseInt(item?.quantity) === 1 ? 'out of stock' : <button onClick={() => handleAddToCart(item._id, false)} className=' flex justify-around p-2 rounded border-green-300 bg-green-800 text-white -mt-2 -ms-5  pt-2 h-[54px] w-[270px]'> */}
 
             </p>
           </div>
@@ -115,8 +137,8 @@ function Productdetails() {
 
 
         <div className="flex justify-center overflow-x-scroll">
-            {/* {
-            data.map((item, index) => {
+            {
+            products?.map((item, index) => {
               return (
                 <> 
                   <Card className=' border-green-200 border mt-[40px] w-[160px] sm:w-[120px] sm:h-[250px] m-3 flex  shadow justify-between items-center hover:translate-x-1 '>
@@ -140,7 +162,7 @@ function Productdetails() {
                   </>
                )
             }) 
-          }  */}
+          } 
         </div>
       </div>
     </>

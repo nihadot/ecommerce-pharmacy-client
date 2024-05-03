@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ViewOrderPage = () => {
+const AdminOrderview = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
   
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/admin/orders');
-        setOrders(response.data);
+        const response = await axios.get('http://localhost:3000//api/geetorders');
+        setOrders(response.data.result);
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
@@ -34,9 +34,9 @@ const ViewOrderPage = () => {
         <tbody>
           {orders.map(order => (
             <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.customerName}</td>
-              <td>{order.totalAmount}</td>
+              <td>{order.addressId}</td>
+              <td>{order.fullame}</td>
+              <td>{order.total}</td>
               <td>{order.status}</td>
             </tr>
           ))}
@@ -46,4 +46,4 @@ const ViewOrderPage = () => {
   );
 };
 
-export default ViewOrderPage;
+export default AdminOrderview;

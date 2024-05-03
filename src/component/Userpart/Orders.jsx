@@ -116,7 +116,7 @@ const Orders = () => {
         <Card className="w-[850px] h-auto m-7">
           <div className="w-[850px] h-[80px] pt-[20px] ps-[20px] shadow-md flex justify-between bg-green-50">
             <div className="w-[150px] ">
-              <p className="font-sans font-semibold">Order: {state._id}</p>
+              <p className="font-sans font-semibold">Order Id: {state._id}</p>
               <p className="font-sans font-semibold">OrderDate: {new Date(state.createdAt).getDate() + ' / ' + new Date(state.createdAt).getMonth() + '/' + new Date(state.createdAt).getFullYear()}</p>
             </div>
             <div className="font-sans pe-[30px]">

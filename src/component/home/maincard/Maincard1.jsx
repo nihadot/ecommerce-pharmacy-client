@@ -1,14 +1,16 @@
 import { Card } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import { Link,NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { errorToast, successToast } from "../../toast";
 import { BsFillHandbagFill } from "react-icons/bs";
+import { Context } from '../../../App';
 
 function Maincard1() {
     const [data,setData] = useState([])
     const [productLimit,setProductLimit] = useState(4)
-    const [refresh,setRefresh] = useState(true)
+    // const [refresh,setRefresh] = useState(true)
+    const { refresh,setRefresh } = useContext(Context)
  
 
 
@@ -36,7 +38,7 @@ function Maincard1() {
             const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id,offer:status });
             console.log(response);
             successToast("Succesfully Added into Cart")
-           
+            setRefresh(!refresh)
       
           } catch (error) {
             console.log(error);

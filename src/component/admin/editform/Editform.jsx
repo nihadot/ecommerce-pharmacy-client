@@ -58,6 +58,8 @@ const [mainimage,setMainImage] = useState("");
   useEffect(() => {
     setName(state?.name);
     setPrice(state?.price);
+    setMainImage(state?.mainimage);
+    setImage(state?.image);
     setDeliveryCost(state?.deliveryCost);
     setDescription(state?.description);
     setSelectedSize(state?.selectedSize);

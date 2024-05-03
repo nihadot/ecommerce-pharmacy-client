@@ -1,15 +1,16 @@
 import { Card } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext} from 'react'
 import { Link,NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { errorToast, successToast } from "../../toast";
 import { BsFillHandbagFill } from "react-icons/bs";
+import { Context } from '../../../App';
 
 function Offer() {
     const [data,setData] = useState([])
-    const [refresh,setRefresh] = useState(true)
+    // const [refresh,setRefresh] = useState(true)
 
-
+    const { refresh,setRefresh,setOfferCartCount } = useContext(Context)
 
 
 
@@ -24,6 +25,7 @@ function Offer() {
         console.log('api');
         const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id,offer:status });
         console.log(response);
+        setRefresh(!refresh)
         successToast("Succesfully Added into Cart")
        
   
@@ -43,22 +45,14 @@ function Offer() {
         try {
             const response = await axios.get("http://localhost:3000/api/buttons")
             setData(response.data.Offercard);
+            setOfferCartCount(response.data.Offercard?.length)
+            setRefresh(refresh)
         } catch (error) {
             
         }
     };
 
 
-    // const addToCart = async (id) => {
-    //     try {
-    //       const response = await axios.post('http://localhost:3000/api/cart/addToCart',  {productId:id,userId:JSON.parse(localStorage.getItem("userDetails"))?._id} );
-    //       console.log(response);
-    //       setRefresh(!refresh)
-    //       successToast("Succesfully Added into Cart")
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   };
 
 
   return (

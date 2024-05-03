@@ -12,35 +12,18 @@ import { RiLuggageCartFill } from "react-icons/ri";
 import axios from 'axios'
 import { Context } from '../../App';
 const Header = () => {
-  const { cart } = useContext(Context)
+  const { cart,wishlist,offerCartCount } = useContext(Context)
 
 
 
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [wishlist, setWishlist] = useState([])
+  // const [wishlist, setWishlist] = useState([])
   // const [refresh, setRefresh] = useState(true)
   const [count, setCount] = useState(0);
 
 
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
-
-  const fetchdata = async () => {
-    try {
-     
-      const response___ = await axios.get(`http://localhost:3000/api/wishlist/listWishlist/${JSON.parse(localStorage.getItem("userDetails"))._id}`)
-      setWishlist(response___?.data?.data?.length)
-      // console.log(response.data.result.length);
-      // setData(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-
-
-  }
 
 
 
@@ -144,13 +127,13 @@ const Header = () => {
         <NavLink to={"wishlist"}>
           <div className='  '>
             <BsFillSuitHeartFill className='text-green-700  ' />
-            {wishlist}
+            {wishlist?.length}
           </div>
         </NavLink>
         <NavLink to={"cart"}>
           <div className='  '>
             <BsMinecartLoaded className='text-green-700' />
-            {cart?.length}
+            { cart?.length }{ offerCartCount }
 
           </div>
         </NavLink>
@@ -179,7 +162,7 @@ const Header = () => {
             Hello {JSON.parse(localStorage.getItem("userDetails")).Fname}
           </>
         ) : (
-          <div>
+          <div className='flex'>
             <div className=''>
               <NavLink to={"/login"} > <button className='bg-green-800 h-[30px] rounded-md w-[50px]  text-white'>Login</button>
               </NavLink>

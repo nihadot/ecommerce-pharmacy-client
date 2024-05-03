@@ -16,6 +16,7 @@ const Productadd = () => {
   const [ categories,setCategories ] = useState([]);
   const [mainimage,setMainImage] = useState('');
   const [ dropdown,setDropdown ] = useState('');
+  
 
   const navigate = useNavigate();
 

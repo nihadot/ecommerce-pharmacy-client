@@ -3,55 +3,16 @@ import { Card } from '@mui/material'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { successToast } from '../toast';
+import { Context } from '../../App';
 
 
 function Wishlist () {
 
-  
-  const [wishlist, setWishlist] = useState([])
-  const [refresh, setRefresh] = useState(true)
-  const [data,setData] = useState([])
-
-
-
-const fetchdata = async () => {
-  try {
-      const response = await axios.get(`http://localhost:3000/api/wishlist/listWishlist/${JSON.parse(localStorage.getItem("userDetails"))._id }`)
-      setWishlist(response.data.data)
-  } catch (error) {
-    setWishlist([])
-
-    console.log(error);
-  }
-}
-
-useEffect(() => {
-fetchdata()
-}, [refresh])
+  const { cart,wishlist,refresh,setRefresh } = useContext(Context)
 
 
 
 
-// useEffect(()=>{
-//   fetchData()
-// },[])
-
-
-// const fetchData = async ()=>{
-//     try {
-//         const response = await axios.get("http://localhost:3000/api/product")
-//         setData(response.data.product);
-//     } catch (error) {
-        
-//     }
-// };
-
-
-
-//  add 
-  const addToWishlist = (e) => {
-    
-  };
 
   // remove 
   const handleRemoveQuantity = async (id) => {

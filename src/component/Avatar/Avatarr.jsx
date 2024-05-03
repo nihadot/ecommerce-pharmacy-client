@@ -36,7 +36,7 @@ function Avatarr() {
               Home
             </Link>
 
-            <Link to={'order'}
+            <Link to={'/orderdetails' } 
               className="block px-4 py-2 text-sm text-green-900 hover:bg-gray-100"
             >
               My Orders

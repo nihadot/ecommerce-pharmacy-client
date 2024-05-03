@@ -40,7 +40,7 @@ const Data = () => {
         return (
           <>
     <div className='flex bg-green-800 justify-aruond h-[500px]'>
-    <div className='mx-10 my-10 text-white leading-snug w-[520px] h-[70px]'>
+    <div className='mx-10 my-10 text-white leading-snug w-[520px] h-[70px] sm:px-9'>
         <h1 className='text-5xl mt-4 pt-2'>
             {item.title}
         </h1>

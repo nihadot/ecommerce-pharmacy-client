@@ -38,6 +38,7 @@ function EditBlog() {
     useEffect(()=>{
       setName(value.state.name)
       setDescription(value.state.description)
+      setimage(value.state.image)
     },[])
 
 

@@ -18,7 +18,7 @@ import Userprofile from "./component/admin/profileview/Userprofile"
 import Productadd from "./component/admin/product/Productadd"
 import Shopping from "./component/home/shopping/Shopping"
 import ProductEdit from "./component/admin/product view/ProductEdit"
-import ViewOrderPage from "./component/admin/order/Order"
+import ViewOrderPage from "./component/admin/order/AdminOrderview"
 import Editform from "./component/admin/editform/Editform"
 import Essential from "./component/home/essential/Essential"
 import Productdetails from "./component/home/productdetails/Productdetails"
@@ -72,6 +72,7 @@ import Addressviewpage from "./component/Userpart/Addressviewpage";
 import Ordering from "./component/Userpart/Ordering";
 import Paymentmode from "./component/Userpart/Paymentmode";
 import Orderdetails from "./component/Userpart/Orderdetails";
+import AdminOrderview from "./component/admin/order/AdminOrderview";
 
 
 export const Context = React.createContext()
@@ -84,6 +85,8 @@ function App() {
   const [cart, setCart] = useState([])
   const [wishlist, setWishlist] = useState([])
   const [refresh, setRefresh] = useState(true)
+  const [offerCartCount, setOfferCartCount] = useState(0)
+  // const[offerwishlist,setOfferWishlist]=useState(0)
 
 
   
@@ -414,8 +417,8 @@ function App() {
 
         },
         {
-          path: "/admin/orderviewpage",
-          element: <OrderViewPage />,
+          path: "/admin/orderview",
+          element: <AdminOrderview />,
 
         },
 
@@ -449,14 +452,14 @@ function App() {
 
 
   useEffect(() => {
-    fetchdata();
+    fetchData();
   }, [refresh]);
 
-  const fetchdata = async () => {
+  const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/cart/listCart/${JSON.parse(localStorage.getItem("userDetails"))._id}`);
       setCart(response.data.result);
-      setRefresh(!refresh);
+     
     } catch (error) {
       setCart([]);
 
@@ -467,27 +470,32 @@ function App() {
 
 
 
+  const fetchdata = async () => {
+    try {
+        const response = await axios.get(`http://localhost:3000/api/wishlist/listWishlist/${JSON.parse(localStorage.getItem("userDetails"))._id }`)
+        setWishlist(response.data.data)
+    } catch (error) {
+      setWishlist([])
+  
+      console.log(error);
+    }
+  }
+  
+  useEffect(() => {
+  fetchdata()
+  }, [refresh])
+  
+  
 
 
 
 
-  // const handleAddToCart = async (idOf, status) => {
-  //   try {
-  //     console.log('api');
-  //     const response = await axios.post('http://localhost:3000/api/cart/addToCart', { productId: idOf, userId: JSON.parse(localStorage.getItem("userDetails"))?._id, offer: status });
-  //     console.log(response);
-  //     setRefresh(!refresh)
-  //     successToast("Succesfully Added into Cart")
 
 
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <>
-      <Context.Provider value={{ count, setCount, cart, setCart, wishlist, setWishlist, refresh, setRefresh, }}>
+      <Context.Provider value={{ count, setCount, cart, setCart, wishlist,setOfferCartCount, offerCartCount,setWishlist, refresh, setRefresh, }}>
         < RouterProvider router={router} />
       </Context.Provider>
     </>

@@ -76,7 +76,7 @@ try {
   
   successToast(response.data.message);
   setRefresh(!refresh)
-  navigate(`/cart`)
+  navigate('/orderdetails')
 } catch (error) {
   errorToast(error.response.data.message, "error");
 }
