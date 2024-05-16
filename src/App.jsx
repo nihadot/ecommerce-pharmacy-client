@@ -18,7 +18,7 @@ import Userprofile from "./component/admin/profileview/Userprofile"
 import Productadd from "./component/admin/product/Productadd"
 import Shopping from "./component/home/shopping/Shopping"
 import ProductEdit from "./component/admin/product view/ProductEdit"
-import ViewOrderPage from "./component/admin/order/AdminOrderview"
+// import ViewOrderPage from "./component/admin/order/AdminOrderview"
 import Editform from "./component/admin/editform/Editform"
 import Essential from "./component/home/essential/Essential"
 import Productdetails from "./component/home/productdetails/Productdetails"
@@ -72,7 +72,7 @@ import Addressviewpage from "./component/Userpart/Addressviewpage";
 import Ordering from "./component/Userpart/Ordering";
 import Paymentmode from "./component/Userpart/Paymentmode";
 import Orderdetails from "./component/Userpart/Orderdetails";
-import AdminOrderview from "./component/admin/order/AdminOrderview";
+// import AdminOrderview from "./component/admin/order/AdminOrderview";
 
 
 export const Context = React.createContext()
@@ -97,7 +97,7 @@ function App() {
 
       children: [
         {
-          path: "home",
+          path: "",
           element: <Home />
         },
         {
@@ -279,11 +279,11 @@ function App() {
           element: <Products />,
 
         },
-        {
-          path: "/admin/vieworder",
-          element: <ViewOrderPage />,
+        // {
+        //   path: "/admin/vieworder",
+        //   element: <ViewOrderPage />,
 
-        },
+        // },
         {
           path: "/admin/editform/:id",
           element: <Editform />,
@@ -416,11 +416,11 @@ function App() {
           element: <Addbannertwo />,
 
         },
-        {
-          path: "/admin/orderview",
-          element: <AdminOrderview />,
+        // {
+        //   path: "/admin/orderview",
+        //   element: <AdminOrderview />,
 
-        },
+        // },
 
 
 

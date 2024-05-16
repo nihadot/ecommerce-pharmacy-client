@@ -7,8 +7,6 @@ import axios from "axios";
 import { errorToast } from "../toast";
 import { Context } from "../../App";
 
-
-
 const Orders = () => {
   const [refresh, setRefresh] = useState(false);
   const [user, setUser] = useState([]);
@@ -16,12 +14,12 @@ const Orders = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const { cart } = useContext(Context);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   console.log(state, "cart");
 
   let total = 0;
-  let totalAmount=0;
+  let totalAmount = 0;
 
   // const fetchAddress = async () => {
   //   try {
@@ -36,28 +34,22 @@ const Orders = () => {
   //   }
   // };
 
-
-
   // useEffect(()=>{
   //   fetchAPI()
   // },[refresh])
 
-//   const fetchAPI = async(e) =>{
-//     try {
-//         const response = await axios.get("http://localhost:3000/api/buttons",{headers:{
-//           'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
-//         }})
-//         console.log(response,"res");
-  
-//         setData(response.data.Offercard)
-//       } catch (error) {
-//         errorToast(error.message);
-//       }
-// }
+  //   const fetchAPI = async(e) =>{
+  //     try {
+  //         const response = await axios.get("http://localhost:3000/api/buttons",{headers:{
+  //           'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
+  //         }})
+  //         console.log(response,"res");
 
-
-
-
+  //         setData(response.data.Offercard)
+  //       } catch (error) {
+  //         errorToast(error.message);
+  //       }
+  // }
 
   // useEffect(() => {
   //   fetchAddress();
@@ -90,34 +82,27 @@ const Orders = () => {
 
   return (
     <div className="w-[700px] h-fit mx-[16%]">
-      <p className="ps-[40%] pt-[20px] text-[27px]">Order Summary</p>
-      <div className="ps-[36px] font-sans pt-[17px] w-[580px] h-fit\">
-        {/* <p className="text-[22px] ">Hello {user.Fname} </p> */}
+      <p className="ps-[40%] pt-[20px]  text-[27px]">Order Summary</p>
+      <div className="m-3 ">
         <p className="text-[19px] ">Thank you for your purchase!</p>
         <p className="font-light">
           {" "}
-          Your order will be processed within 24 hours during woring days, We
-          will notify you by email once your order has been shipped.
-        </p>
-
-        <p>
-
-        <ul>
-                    <li>{state.addressInfo?.fullname}</li>
-                    <li>{state.addressInfo?.buildingName}</li>
-                    <li>{state.addressInfo?.roadName}</li>
-                    <li>{state.addressInfo?.houseNo}</li>
-                    <li>{state.addressInfo?.pinCode}</li>
-                    <li>{state.addressInfo?.phoneNumber}</li>
-                  </ul>
+          Your order will be processed within 24 hours .
         </p>
       </div>
       <div className="pb-[40px]">
         <Card className="w-[850px] h-auto m-7">
           <div className="w-[850px] h-[80px] pt-[20px] ps-[20px] shadow-md flex justify-between bg-green-50">
-            <div className="w-[150px] ">
+            <div className=" ">
               <p className="font-sans font-semibold">Order Id: {state._id}</p>
-              <p className="font-sans font-semibold">OrderDate: {new Date(state.createdAt).getDate() + ' / ' + new Date(state.createdAt).getMonth() + '/' + new Date(state.createdAt).getFullYear()}</p>
+              <p className="font-sans font-semibold">
+                OrderDate:{" "}
+                {new Date(state.createdAt).getDate() +
+                  " / " +
+                  new Date(state.createdAt).getMonth() +
+                  "/" +
+                  new Date(state.createdAt).getFullYear()}
+              </p>
             </div>
             <div className="font-sans pe-[30px]">
               <button
@@ -136,15 +121,27 @@ const Orders = () => {
                   <p className="font-semibold text-[17px]">
                     Your order will be send to:
                   </p>
-             
+                  <div className="ps-[36px] font-sans pt-[17px] w-[580px] h-fit\">
+                    {/* <p className="text-[22px] ">Hello {user.Fname} </p> */}
+
+                    <p>
+                      <ul>
+                        <li>{state.addressInfo?.fullname}</li>
+                        <li>{state.addressInfo?.buildingName}</li>
+                        <li>{state.addressInfo?.roadName}</li>
+                        <li>{state.addressInfo?.houseNo}</li>
+                        <li>{state.addressInfo?.pinCode}</li>
+                        <li>{state.addressInfo?.phoneNumber}</li>
+                      </ul>
+                    </p>
+                  </div>
                 </div>
                 <div className="w-[340px]">
                   <p>
                     <span className="font-semibold text-[17px]">
                       Payment method
                     </span>
-                    : Cash on 
-                    Delivary
+                    : Cash on Delivary
                   </p>
                   <p>
                     <span className="font-semibold text-[17px]">
@@ -156,7 +153,6 @@ const Orders = () => {
               </div>
               <div className="w-[850px] space-y-4 px-[50px] bg-green-300 flex flex-wrap gap-[20px]">
                 {cart.map((item, index) => {
-                
                   return (
                     <>
                       <div className="flex flex-wrap pt-[10px]">
@@ -179,11 +175,8 @@ const Orders = () => {
                                 <p className="pt-[5px]">
                                   <LuIndianRupee />
                                 </p>
-                                <p>
-                               
-                                </p>
+                                <p></p>
                               </div>
-                              
                             </div>
                           </div>
                         </Card>

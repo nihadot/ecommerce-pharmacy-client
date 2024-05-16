@@ -45,35 +45,22 @@ const Header = () => {
 
 
   return (
-    <div className='shadow-md w-full h-[100px] flex  justify-between items-center'>
+    <div className='shadow-md w-full h-[100px] flex flex-col md:flex-row justify-between items-center'>
       {/* <div className='md:px-10 py-4 px-7 bg-white '> */}
-      <div className='text-green-700 ms-7'>
+      <div className='text-green-700 ms-7 mb-5 md:mb-0'>
         <FaClinicMedical className='w-7 h-7 text-green-700' />
         <span className='text-green-700'>Medico Store</span>
       </div>
 
-      {/* </div> */}
 
-      {/* <div className="flex">
-        <div className=''>
-          <NavLink to={"/login"} > <button className='bg-green-800 h-[30px] rounded-md w-[50px]  text-white'>Login</button>
-          </NavLink>
-        </div>
-
-        <div className=''>
-          <NavLink to={"/signup"} >
-
-            <button className='bg-green-800 h-[30px] rounded-md ms-3 w-[80px]  text-white'>Sign Up</button>
-          </NavLink>
-        </div>
-      </div> */}
+     
 
 
       {/* //search button */}
 
-      <div className='flex items-center  gap-5 ms-20'>
+      <div className='flex flex-col md:flex-row  items-center  gap-5 ms-20 mb-5 md:mb-0'>
         <form action="" className=' flex'>
-          <div className=''>
+          <div className='mb-3 md:mb-0'>
             <input
               type="text"
               value={search}
@@ -91,7 +78,7 @@ const Header = () => {
         </form>
       </div>
       {
-        search?.length > 0 && <div className='max-h-80 overflow-y-scroll absolute top-[91px] bg-white w-[200px] left-[200px]  px-6'>
+        search?.length > 0 && <div className='max-h-80 overflow-y-scroll absolute top-[91px] md:top-auto md:relative bg-white w-[200px] left-[200px]  px-6'>
           {
             searchResult.map((item) => {
               return (
@@ -122,7 +109,7 @@ const Header = () => {
 
 
 
-      <div className="flex justify-around items-center gap-6 ms-52">
+      <div className="flex justify-around items-center gap-6 ms-0 md:ms-52">
 
         <NavLink to={"wishlist"}>
           <div className='  '>
