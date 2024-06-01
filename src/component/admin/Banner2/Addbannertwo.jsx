@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
           Add Banner2
         </p>
         <div className="ps-[20px] pt-[20px]">
-          <img src=''  className="w-[90px] h-[90px]" />
+          <img src={image}  className="w-[90px] h-[90px]" />
           <FileBase64 onDone={(res) => setImage(res.base64)} />
         </div>
         <div className="ps-[20px] pt-[20px] ">

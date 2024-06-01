@@ -14,20 +14,27 @@ const Aheader = () => {
 
   const fetchAPI = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/admin/profile/${
-          JSON.parse(localStorage.getItem("adminDetails"))._id
-        }`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("adminToken")} `,
-          },
-        }
-      );
+      if (localStorage.getItem("id")) {
+        const response = await axios.get(
+          `http://localhost:3000/api/admin/profile/${localStorage.getItem(
+            "id"
+          )}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("adminToken")} `,
+            },
+          }
+        );
 
-      setUser(response.data.users);
+        setUser(response.data.user);
+      } else {
+        errorToast("id not available");
+      }
     } catch (error) {
-      errorToast(error.message);
+      setUser({});
+      errorToast(
+        error.response.data.message || error.message || "error try again"
+      );
     }
   };
 

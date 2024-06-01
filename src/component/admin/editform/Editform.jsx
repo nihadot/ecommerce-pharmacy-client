@@ -9,7 +9,6 @@ function Editform  ()  {
 const {state} =useLocation();
 const {id} =useParams();
 const navigate = useNavigate();
-console.log(state);
 
 
 
@@ -23,6 +22,7 @@ const [mainimage,setMainImage] = useState("");
   const [image, setImage] = useState([]);
   const [categories,setCategories] = useState([]);
   const [ dropdown,setDropdown ] = useState('');
+  const [ dropdownName,setDropdownName ] = useState('');
   
 
   
@@ -43,6 +43,7 @@ const [mainimage,setMainImage] = useState("");
         quantity:quantity,
         mainimage:mainimage,
         image:image,
+        selectedSize:selectedSize,
         dropdown,},
         {
         headers:{
@@ -50,6 +51,7 @@ const [mainimage,setMainImage] = useState("");
           }
       })
       successToast(response.data.message)
+      navigate('/admin/productedit')
     }catch(error){
       errorToast(error.response.data.message,"error")
     }
@@ -64,7 +66,7 @@ const [mainimage,setMainImage] = useState("");
     setDescription(state?.description);
     setSelectedSize(state?.selectedSize);
     setQuantity(state?.quantity)
-    setCategories(state?.categories)
+    setDropdown(state?.dropdown)
 
 
     fetchAPI()
@@ -81,29 +83,21 @@ const [mainimage,setMainImage] = useState("");
         console.log(response,"res");
   
         setCategories(response.data.Category)
+        const result = response?.data?.Category?.find((item)=> item._id === state.dropdown )
+        console.log(result,'--s')
+        if(result){
+          setDropdownName(result)
+        }
       } catch (error) {
         errorToast(error.message)
       }
 }
 
-
-
-  //edit
-
-  // const handleEdit = async(e)=>{
-  //   console.log(e,'ee')
-  //   e.preventDefault();
-
-  //   await axios.put(`http://localhost:3000/api/products/${isEdit.id}`,isEditFormData)
-  //   setRefresh(!refresh)
-  //   //edit btn refresh aakm into "add to cart"
-  //   setIsEdit({status:false,id:null})
-  // }
-
-  // const handleEditChange = (e)=>{
-  //   setIsEditFormData({[e.target.name]:e.target.value})
-  // }
-
+// delte image
+const deleteImage = (id)=>{
+  const response  = image.filter((item) => item._id !== id )
+  setImage(response)
+}
 
 
 
@@ -153,12 +147,12 @@ const [mainimage,setMainImage] = useState("");
 
         <div className="flex flex-col w-[200px] gap-3 m-auto mt-3">
 
-<select name="" id="" onChange={(e)=> setDropdown(e.target.value) }>
+<select value={dropdown} onChange={(e)=> setDropdown(e.target.value) }>
+  <option>select</option>
  { 
    categories && categories.map((item)=>{
    return(
      <>
-     <option>Select</option>
      <option key={item._id} value={item._id}>{item.name}</option>
      </>
    )
@@ -169,11 +163,13 @@ const [mainimage,setMainImage] = useState("");
         <p className='font-thin text-green-900'>Add Images</p>
             <div className="flex gap-2">
               {
-                image.map((items)=>{
+                image.map((items,index)=>{
                   return(
-                    <>
+                    <div className='relative pe-3' key={index}>
+
                     <img className='w-12 h-12 rounded-full' src={items.image} alt="Loading..." />
-                    </>
+                    <span className='text-red-600 absolute left-2 top-12' onClick={()=>deleteImage(items._id)}>delete</span>
+                    </div>
                   )
                 })
               }

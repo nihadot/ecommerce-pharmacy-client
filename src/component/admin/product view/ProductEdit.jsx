@@ -18,7 +18,7 @@ function ProductEdit() {
 
       setProducts(response.data.product);
     } catch (error) {
-      errorToast(error.response.data.message, "error");
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   };
   const handleDelete = async (id) => {
@@ -34,7 +34,7 @@ function ProductEdit() {
       successToast(response.data.message);
       setRefresh(!refresh);
     } catch (error) {
-      errorToast(error.message);
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   };
 

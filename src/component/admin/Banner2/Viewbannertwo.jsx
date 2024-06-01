@@ -74,18 +74,18 @@ const Viewbannertwo = () => {
                     >
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="px-6 py-4 font-medium  whitespace-nowrap text-white"
                       >
                         <img src={item.image} />
                       </th>
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="px-6 py-4 font-medium  whitespace-nowrap text-white"
                       >
                         {item.title}
                       </th>
 
-                      <td className="px-6 py-4 font-medium text-gray-900">
+                      <td className="px-6 py-4 font-medium text-white">
                         {item.content}
                       </td>
 

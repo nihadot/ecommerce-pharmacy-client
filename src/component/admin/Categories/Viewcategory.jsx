@@ -30,13 +30,14 @@ function Viewcategory() {
   const fetchAPI = async(e) =>{
     try {
         const response = await axios.get("http://localhost:3000/api/category",{headers:{
-          'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
+          'Authorization':`Bearer ${localStorage.getItem("id")} `
         }})
         console.log(response,"res");
   
         setCategory(response.data.Category)
       } catch (error) {
-        errorToast(error.message);
+        setCategory([])
+        errorToast(error.response.data.message || error.message || "error try again");
       }
 }
 

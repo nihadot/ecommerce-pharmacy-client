@@ -2,35 +2,20 @@ import React from "react";
 import { NavLink, Routes, useNavigate } from "react-router-dom";
 import Blogg from "../blog/Blogg";
 import { FaClinicMedical } from "react-icons/fa";
+import { errorToast } from "../../toast";
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
   const logoutAdmin = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminDetails");
-    navigate("/alogin");
+    if(localStorage.getItem("id")){
+      localStorage.removeItem("id");
+      navigate("/alogin");
+    }else{
+      errorToast('id not availble in localstorage, while logout')
+      navigate("/alogin");
+    }
   };
-  // const logoutAdmin = async(e) => {
-
-  // e.preventDefault();
-  // console.log(formFiled);
-  // try {
-  //   const response = await Login(formFiled)
-
-  //    successToast(response.data.message)
-
-  //    console.log(response.data);
-
-  //    if(response.data){
-  //     return errorToast('logout is success')
-  //    }
-
-  //   } catch (error) {
-  //     errorToast(error.response.data.message,'not logout')
-  //   }
-
-  //  }
 
   return (
     <>

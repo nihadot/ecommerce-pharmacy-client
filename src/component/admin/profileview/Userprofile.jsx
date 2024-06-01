@@ -5,7 +5,7 @@ import { errorToast } from '../../toast'
 
 function Userprofile() {
 
-  const [products,setProducts] = useState([])
+  const [profile,setProfile] = useState({})
 
   useEffect(()=>{
     fetchUsers()
@@ -13,10 +13,10 @@ function Userprofile() {
 
   const fetchUsers=async()=>{
     try {
-      const response = await axios.get("http://localhost:3000/api/users")
-    setProducts(response.data.details)      
+      const response = await axios.get(`http://localhost:3000/api/admin/profile/${localStorage.getItem("id")}`)
+    setProfile(response.data.user)      
     } catch (error) {
-      errorToast(error.message || 'error')
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   }
   return (
@@ -36,18 +36,14 @@ function Userprofile() {
       {/* login  users view  */}
       
     {
-      products.map((item)=>{
-        return( 
-        <Fragment>
+      profile &&
           <tr>
             <td className='text-green-700 p-5'><RxAvatar /></td>
-            <td  className='text-green-700 p-5'>{item.Fname} {item.Lname}</td>
-            <td  className='text-green-700 p-5'>{item.email}</td>
-            <td  className='text-green-700 p-5'>{item.createdAt}</td>
+            <td  className='text-green-700 p-5'>{profile.Fname} {profile.Lname}</td>
+            <td  className='text-green-700 p-5'>{profile.email}</td>
+            <td  className='text-green-700 p-5'>{profile.createdAt}</td>
           </tr>
-        </Fragment>
-        )
-      })
+    
     }
     </table>
     </div>

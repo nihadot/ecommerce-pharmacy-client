@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
- import { errorToast} from "../../toast";
+import { errorToast } from "../../toast";
 
 import Adver1 from "./Adver1";
 import Adver2 from "./Adver2";
@@ -17,27 +17,26 @@ function Bannerview() {
     try {
       const response = await axios.get("http://localhost:3000/api/banner", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("adminToken")} `,
+          Authorization: `Bearer ${localStorage.getItem("id")} `,
         },
       });
-      console.log(response, "res");
-
       setBanner(response.data.Banner);
     } catch (error) {
-      errorToast(error.message);
+      errorToast(
+        error.response.data.message || error.message || "error try again"
+      );
     }
   };
 
   return (
     <>
       <div className="flex flex-wrap justify-center mt-5">
-        <Adver1/>
+        <Adver1 />
 
         <div className="">
-          <Adver2/>
-          <Adver3/>
+          <Adver2 />
+          <Adver3 />
         </div>
-        
       </div>
     </>
   );

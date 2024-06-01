@@ -15,14 +15,15 @@ function Adver3() {
     try {
       const response = await axios.get("http://localhost:3000/api/banner3", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("adminToken")} `,
+          Authorization: `Bearer ${localStorage.getItem("id")} `,
         },
       });
       console.log(response, "banner3");
 
       setBanner3(response.data.Banner3);
     } catch (error) {
-      errorToast(error.message);
+      setBanner3([]);
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   };
 
@@ -40,7 +41,7 @@ function Adver3() {
       setRefresh(!refresh);
       successToast("Deleted Succesfully");
     } catch (error) {
-      errorToast(error.message);
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   };
 

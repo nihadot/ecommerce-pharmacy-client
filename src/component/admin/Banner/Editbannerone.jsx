@@ -7,7 +7,6 @@ import { errorToast, successToast } from "../../toast";
 const Editbannerone = () => {
     const { state } = useLocation();
     const { id } = useParams();
-    console.log(state);
     const navigate = useNavigate();
     const [image,setImage]=useState({});
     const [title,setTitle]=useState('');
@@ -18,7 +17,7 @@ const Editbannerone = () => {
         e.preventDefault();
         try {
           const response = await axios.put(
-            `http://localhost:3000/api/editBanner1/${id}`,
+            `http://localhost:3000/api/bannerone/edit/${id}`,
             {
                 image:image,
                 title: title,
@@ -30,7 +29,7 @@ const Editbannerone = () => {
           console.log(response.data.message);
           navigate("/admin/viewbannerone");
         } catch (error) {
-          errorToast(error.response.data.message, "error");
+          errorToast(error.response.data.message || error.message || "error try again");
         }
       };
     
@@ -50,7 +49,7 @@ const Editbannerone = () => {
         Edit Banner 1
       </p>
       <div className="ps-[20px] pt-[20px]">
-        <img src=''  className="w-[90px] h-[90px]" />
+        {image && <img src={image}  className="w-[90px] h-[90px]" />}
         <FileBase64 onDone={(res) => setImage(res.base64)} />
       </div>
       <div className="ps-[20px] pt-[20px] ">

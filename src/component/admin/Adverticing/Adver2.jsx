@@ -16,14 +16,15 @@ function Adver2() {
     try {
       const response = await axios.get("http://localhost:3000/api/banner2", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("adminToken")} `,
+          Authorization: `Bearer ${localStorage.getItem("id")} `,
         },
       });
       console.log(response, "banner2");
 
       setBanner2(response.data.Banner2);
     } catch (error) {
-      errorToast(error.message);
+      setBanner2([]);
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   };
 
@@ -31,13 +32,13 @@ function Adver2() {
   const handleDelete = async(id)=>{
     try {
       const response = await axios.delete(`http://localhost:3000/api/banner2/${id}`,{headers:{
-            'Authorization':`Bearer ${localStorage.getItem("adminToken")} `
+            'Authorization':`Bearer ${localStorage.getItem("id")} `
           }})
 
           setRefresh(!refresh)
       successToast("Deleted Succesfully");
     } catch (error) {
-      errorToast(error.message);
+      errorToast(error.response.data.message || error.message || "error try again");
     }
   }
 
