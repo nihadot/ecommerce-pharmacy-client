@@ -85,6 +85,7 @@ const Viewbannertwo = () => {
                         {item.title}
                       </th>
 
+
                       <td className="px-6 py-4 font-medium text-white">
                         {item.content}
                       </td>
